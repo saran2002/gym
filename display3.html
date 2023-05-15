@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./adminpage.css">
+    <title>Document</title>
+    <style>
+        tr,th,td{
+            border: 1px solid white;
+            padding: 10px;
+            color: white;
+        
+
+        }
+    </style>
+</head>
+<body style="background: linear-gradient(90deg, #c966b7 0%, rgba(75,14,154,1) 35%, rgba(0,212,255,1) 100%);">	
+
+<center>
+    <table id="result" style="padding: 10px;">
+
+    </table></center>
+
+
+    <script>
+        // API for get requests
+        let fetchRes = fetch(
+"http://localhost:5000/get3");
+        // fetchRes is the promise to resolve
+        // it by using.then() method
+        fetchRes.then(async data => {
+                var d = await data.json()
+                console.log(d)
+                var temp = ' <tr><th>NAME</th><th>PHONE NUMBER</th><th>EMAIL</th><th>ADDRESS</th><th>HEIGHT</th><th>WEIGTH</th></tr>'
+                for(i of d)
+                {
+                    temp = temp + '<tr><td>'+i.name+'</td><td>'+i.pno+'</td><td>'+i.email+'</td><td>'+i.add+'</td><td>'+i.h1+'</td><td>'+i.w1+'</td></tr>'
+                }
+                
+                document.getElementById('result').innerHTML=temp;
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="text" id="name"><br>
+        <input type="password" id="pass"><br>
+        <button type="submit" id="b1">submit</button>
+    </form>
+
+<script>
+    const add=document.querySelector("#b1");
+    
+    add.addEventListener("click",async()=>{
+     const n1=String(document.querySelector("#name").value);
+     const n2=String(document.querySelector("#pass").value);
+     
+    
+     fetch('http://localhost:5000/insert4',{
+                mode:'cors',
+                method:'POST',
+                headers:{
+                    'Content-type':'application/json'
+                },
+                body:JSON.stringify({
+                    name:n1,
+                    pass:n2
+                })
+            })
+            .then(async(e)=>{
+                alert("User added successfully!");
+                
+            })
+            .catch(async()=>{
+                console.log("ERROR");
+                result.innerHTML="ERROR";
+            })
+    })
+   
+</script>
+</body>
+</html>
